@@ -13,9 +13,10 @@ import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 
-public class BookstoreTests {
+public class BookStoreTests {
+
     @BeforeAll
-    @Tag("booktest")
+    @Tag("bookstoretest")
     static void setup() {
         RestAssured.baseURI = "https://demoqa.com";
     }
@@ -23,7 +24,7 @@ public class BookstoreTests {
     @Test
     @DisplayName("Проверка книги по номеру ISBN")
     @Story("API тесты для demoqa.com/bookstore")
-    @Tag("booktest")
+    @Tag("bookstoretest")
     void getBooksTest() {
         given()
                 .filter(withCustomTemplates())
@@ -41,10 +42,10 @@ public class BookstoreTests {
                 .body("pages", is(234));
     }
 
-    @Test
     @DisplayName("Проверка всего списка книг")
     @Story("API тесты для demoqa.com/bookstore")
-    @Tag("booktest")
+    @Test
+    @Tag("bookstoretest")
     void getAllBooksTest() {
         given()
                 .filter(withCustomTemplates())
@@ -72,10 +73,10 @@ public class BookstoreTests {
                 .body("books", hasSize(greaterThan(0)));
     }
 
-    @Test
     @DisplayName("Проверка генерации токена пользователя")
     @Story("API тесты для demoqa.com/bookstore")
-    @Tag("booktest")
+    @Test
+    @Tag("bookstoretest")
     void generateTokenTest() {
         String data = "{ \"userName\": \"alex\", " +
                 "\"password\": \"asdsad#frew_DFS2\" }";
@@ -94,10 +95,10 @@ public class BookstoreTests {
                 .body("token.size()", greaterThan(10));
     }
 
-    @Test
     @DisplayName("Проверка генерации токена пользователя с помощью AllureListener")
     @Story("API тесты для demoqa.com/bookstore")
-    @Tag("booktest")
+    @Test
+    @Tag("bookstoretest")
     void generateTokenTestWithAllureListener() {
         String data = "{ \"userName\": \"alex\", " +
                 "\"password\": \"asdsad#frew_DFS2\" }";
@@ -117,9 +118,9 @@ public class BookstoreTests {
                 .body("token.size()", greaterThan(10));
     }
 
-    @Test
     @DisplayName("Проверка генерации токена пользователя с помощью CustomAllureListener")
     @Story("API тесты для demoqa.com/bookstore")
+    @Test
     @Tag("bookstoretest")
     void generateTokenTestWithCustomAllureListener() {
         String data = "{ \"userName\": \"alex\", " +
