@@ -21,6 +21,8 @@ allure {
             }
         }
     }
+
+
     report {
         version.set(allureVersion)
     }
@@ -42,6 +44,7 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
@@ -52,5 +55,10 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+task bookstore_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags "bookstoretest"
     }
 }
